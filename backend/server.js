@@ -59,7 +59,8 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok', ts: new Date() }))
 
 const PORT = ENV.PORT || 5000;
 if (!process.env.VERCEL) {
-  app.listen(PORT, () => console.log(`IMS backend running on http://localhost:${PORT}`));
+  app.listen(PORT, () => console.log(`IMS backend is running`));
 }
 
 export default app;
+// https://ims-backend-hd5i.onrender.com/api/internships
