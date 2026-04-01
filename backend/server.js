@@ -55,4 +55,8 @@ app.use('/api/admin', adminRoutes);
 app.get('/api/health', (req, res) => res.json({ status: 'ok', ts: new Date() }));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`IMS backend running on http://localhost:${PORT}`));
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => console.log(`IMS backend running on http://localhost:${PORT}`));
+}
+
+export default app;
