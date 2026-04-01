@@ -1,9 +1,13 @@
 import mongoose from 'mongoose';
+import ENV from './config.js';
 
 export const connectDB = async () => {
-  const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/ims_db';
-  return mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
+  try {
+    const MONGO_URI = ENV.MONGO_URI;
+    await mongoose.connect(MONGO_URI);
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.log(error.message);
+    process.exit(1);
+  }
 };

@@ -1,6 +1,7 @@
+import ENV from './config/config.js'
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
+
 import path from 'path';
 import bcrypt from 'bcryptjs';
 
@@ -14,7 +15,6 @@ import companyRoutes from './routes/companyRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import User from './models/User.js';
 
-dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -54,7 +54,7 @@ app.use('/api/admin', adminRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok', ts: new Date() }));
 
-const PORT = process.env.PORT || 5000;
+const PORT = ENV.PORT || 5000;
 if (!process.env.VERCEL) {
   app.listen(PORT, () => console.log(`IMS backend running on http://localhost:${PORT}`));
 }
